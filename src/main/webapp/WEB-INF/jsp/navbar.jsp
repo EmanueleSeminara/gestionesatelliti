@@ -21,7 +21,7 @@
             <a class="nav-link dropdown-toggle" href="#" id="dropdown07" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>
             <ul class="dropdown-menu" aria-labelledby="dropdown07">
               <li><a class="dropdown-item" href="${pageContext.request.contextPath}/satellite/launchedtwoyears">Satelliti lanciati da più di due anni</a></li>
-              <li><a class="dropdown-item" href="${pageContext.request.contextPath}/impiegato/search">Ricerca Impiegati</a></li>
+              <li><a class="dropdown-item" href="${pageContext.request.contextPath}/satellite/deactivatedbutnotreturned">Satelliti disattivati ma non rientrati</a></li>
               <li><a class="dropdown-item" href="${pageContext.request.contextPath}/impiegato/insert">Inserisci Impiegato</a></li>
             </ul> 
           </li>   

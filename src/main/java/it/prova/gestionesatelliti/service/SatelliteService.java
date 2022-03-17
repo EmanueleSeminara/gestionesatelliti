@@ -24,5 +24,7 @@ public interface SatelliteService {
 	public void returns(Long idSatellite);
 	
 	public List<Satellite> lanciatiDaPiuDiDueAnni();
+	
+	public List<Satellite> disattivatiMaNonRientrati();
 
 }

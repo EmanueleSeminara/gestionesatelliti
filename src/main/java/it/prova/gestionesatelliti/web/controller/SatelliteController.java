@@ -153,9 +153,18 @@ public class SatelliteController {
 	}
 	
 	@GetMapping("/launchedtwoyears")
-	public ModelAndView launchedtwoyears() {
+	public ModelAndView launchedTwoYears() {
 		ModelAndView mv = new ModelAndView();
 		List<Satellite> results = satelliteService.lanciatiDaPiuDiDueAnni();
+		mv.addObject("satellite_list_attribute", results);
+		mv.setViewName("satellite/list");
+		return mv;
+	}
+	
+	@GetMapping("/deactivatedbutnotreturned")
+	public ModelAndView deactivatedButNotReturned() {
+		ModelAndView mv = new ModelAndView();
+		List<Satellite> results = satelliteService.disattivatiMaNonRientrati();
 		mv.addObject("satellite_list_attribute", results);
 		mv.setViewName("satellite/list");
 		return mv;

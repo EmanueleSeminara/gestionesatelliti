@@ -112,4 +112,9 @@ public class SatelliteServiceImpl implements SatelliteService {
 		return repository.findByDataLancioLessThanEqual(java.sql.Date.valueOf(data));
 	}
 
+	@Override
+	public List<Satellite> disattivatiMaNonRientrati() {
+		return repository.findByDataRientroNullAndStatoEquals(StatoSatellite.DISATTIVATO);
+	}
+
 }
