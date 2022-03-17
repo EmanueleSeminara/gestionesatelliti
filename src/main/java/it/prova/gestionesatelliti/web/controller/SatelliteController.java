@@ -1,5 +1,6 @@
 package it.prova.gestionesatelliti.web.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -19,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import it.prova.gestionesatelliti.model.Satellite;
+import it.prova.gestionesatelliti.model.StatoSatellite;
 import it.prova.gestionesatelliti.service.SatelliteService;
 
 @Controller
@@ -81,13 +83,24 @@ public class SatelliteController {
 	}
 
 	@GetMapping("/delete/{idSatellite}")
-	public String delete(@PathVariable(required = true) Long idSatellite, Model model) {
+	public String delete(@PathVariable(required = true) Long idSatellite, Model model,
+			RedirectAttributes redirectAttrs) {
+		Satellite satelliteDaEliminare = satelliteService.caricaSingoloElemento(idSatellite);
+		System.out.println(satelliteDaEliminare);
+		if ((satelliteDaEliminare.getStato() != StatoSatellite.DISATTIVATO
+				&& satelliteDaEliminare.getDataRientro() != null
+				&& satelliteDaEliminare.getDataRientro().before(new Date()))
+				&& (satelliteDaEliminare.getDataLancio() != null)) {
+			redirectAttrs.addFlashAttribute("errorMessage", "Impossibile eliminare il satellite!");
+			redirectAttrs.addFlashAttribute("list_satellite_attr", satelliteService.caricaSingoloElemento(idSatellite));
+			return "redirect:/satellite";
+		}
 		model.addAttribute("delete_satellite_attr", satelliteService.caricaSingoloElemento(idSatellite));
 		return "satellite/delete";
 	}
 
-	@PostMapping("/confirm")
-	public String confirm(@RequestParam(required = true) Long idDaRimuovere, RedirectAttributes redirectAttrs) {
+	@PostMapping("/remove")
+	public String remove(@RequestParam(required = true) Long idDaRimuovere, RedirectAttributes redirectAttrs) {
 
 		satelliteService.rimuoviById(idDaRimuovere);
 

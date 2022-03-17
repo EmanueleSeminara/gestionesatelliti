@@ -20,7 +20,9 @@
 		<!-- Begin page content -->
 		<main class="flex-shrink-0">
 		  <div class="container">
-		  
+		  		<div class="alert alert-danger alert-dismissible fade show  ${errorMessage==null?'d-none':'' }" role="alert">
+					${errorMessage}
+				</div>
 		  		<div class="alert alert-success alert-dismissible fade show  ${successMessage==null?'d-none':'' }" role="alert">
 				  ${successMessage}
 				  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" ></button>

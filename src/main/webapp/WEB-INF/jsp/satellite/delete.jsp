@@ -67,7 +67,7 @@
 				<!-- end card body -->
 
 				<div class='card-footer'>
-					<form method="post" action="${pageContext.request.contextPath}/satellite/confirm">
+					<form method="post" action="${pageContext.request.contextPath}/satellite/remove">
 						<input type="text" hidden="" name="idDaRimuovere" value="${delete_satellite_attr.id}">
 						<div class="col-12">
 							<a href="${pageContext.request.contextPath}/satellite"
