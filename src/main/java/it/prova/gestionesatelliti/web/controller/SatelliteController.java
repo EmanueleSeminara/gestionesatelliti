@@ -117,7 +117,16 @@ public class SatelliteController {
 	@PostMapping("/update")
 	public String update(@Valid @ModelAttribute("edit_satellite_attr") Satellite satellite, BindingResult result,
 			RedirectAttributes redirectAttrs) {
-
+		if (satellite.getDataLancio() != null && satellite.getDataRientro() != null
+				&& satellite.getDataLancio().after(satellite.getDataRientro())) {
+			result.rejectValue("dataLancio", "dataLancio.dataRientro.rangeInvalid");
+			result.rejectValue("dataRientro", "dataLancio.dataRientro.rangeInvalid");
+		}
+		
+		if(satellite.getStato() == StatoSatellite.DISATTIVATO && satellite.getDataRientro() == null) {
+			result.rejectValue("stato", "stato.invalid");
+		}
+		
 		if (result.hasErrors())
 			return "satellite/edit";
 
