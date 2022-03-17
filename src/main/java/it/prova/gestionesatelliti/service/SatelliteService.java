@@ -22,9 +22,11 @@ public interface SatelliteService {
 	public void launch(Long idSatellite);
 
 	public void returns(Long idSatellite);
-	
+
 	public List<Satellite> lanciatiDaPiuDiDueAnni();
-	
+
 	public List<Satellite> disattivatiMaNonRientrati();
+
+	public List<Satellite> fissiDaDieciAnni();
 
 }

@@ -117,4 +117,11 @@ public class SatelliteServiceImpl implements SatelliteService {
 		return repository.findByDataRientroNullAndStatoEquals(StatoSatellite.DISATTIVATO);
 	}
 
+	@Override
+	public List<Satellite> fissiDaDieciAnni() {
+		LocalDate data = LocalDate.now().minusYears(10).minusDays(1);
+		return repository.findByStatoEqualsAndDataLancioLessThanEqual(StatoSatellite.FISSO,
+				java.sql.Date.valueOf(data));
+	}
+
 }

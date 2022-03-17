@@ -89,7 +89,7 @@ public class SatelliteController {
 		if ((satelliteDaEliminare.getStato() != StatoSatellite.DISATTIVATO
 				&& satelliteDaEliminare.getDataRientro() != null
 				&& satelliteDaEliminare.getDataRientro().before(new Date()))
-				&& (satelliteDaEliminare.getDataLancio() != null)) {
+				|| satelliteDaEliminare.getDataLancio() != null) {
 			redirectAttrs.addFlashAttribute("errorMessage", "Impossibile eliminare il satellite!");
 			return "redirect:/satellite";
 		}
@@ -161,10 +161,10 @@ public class SatelliteController {
 		return mv;
 	}
 	
-	@GetMapping("/deactivatedbutnotreturned")
-	public ModelAndView deactivatedButNotReturned() {
+	@GetMapping("/fixedfortentears")
+	public ModelAndView fixedForTenYears() {
 		ModelAndView mv = new ModelAndView();
-		List<Satellite> results = satelliteService.disattivatiMaNonRientrati();
+		List<Satellite> results = satelliteService.fissiDaDieciAnni();
 		mv.addObject("satellite_list_attribute", results);
 		mv.setViewName("satellite/list");
 		return mv;

@@ -22,7 +22,7 @@
             <ul class="dropdown-menu" aria-labelledby="dropdown07">
               <li><a class="dropdown-item" href="${pageContext.request.contextPath}/satellite/launchedtwoyears">Satelliti lanciati da più di due anni</a></li>
               <li><a class="dropdown-item" href="${pageContext.request.contextPath}/satellite/deactivatedbutnotreturned">Satelliti disattivati ma non rientrati</a></li>
-              <li><a class="dropdown-item" href="${pageContext.request.contextPath}/impiegato/insert">Inserisci Impiegato</a></li>
+              <li><a class="dropdown-item" href="${pageContext.request.contextPath}/satellite/fixedfortentears">Fissi da dieci anni</a></li>
             </ul> 
           </li>   
         </ul>
