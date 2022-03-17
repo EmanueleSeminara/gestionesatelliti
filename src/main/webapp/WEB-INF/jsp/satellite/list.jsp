@@ -53,6 +53,7 @@
 				                        <th>Denominazione</th>
 				                        <th>Stato</th>
 				                        <th>Azioni</th>
+				                        <th></th>
 				                    </tr>
 				                </thead>
 				                <tbody>
@@ -62,9 +63,26 @@
 											<td>${satelliteItem.denominazione }</td>
 											<td>${satelliteItem.stato }</td>
 											<td>
-												<a class="btn  btn-sm btn-outline-secondary" href="${pageContext.request.contextPath}/satellite/show/${satelliteItem.id }">Visualizza</a>
-												<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="${pageContext.request.contextPath}/satellite/edit/${satelliteItem.id }">Edit</a>
-												<a class="btn btn-outline-danger btn-sm" href="${pageContext.request.contextPath}/satellite/delete/${satelliteItem.id }">Delete</a>
+												<div class="col-12">
+													<a class="btn  btn-sm btn-outline-secondary" href="${pageContext.request.contextPath}/satellite/show/${satelliteItem.id }">Visualizza</a>
+													<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="${pageContext.request.contextPath}/satellite/edit/${satelliteItem.id }">Edit</a>
+													<a class="btn btn-outline-danger btn-sm" href="${pageContext.request.contextPath}/satellite/delete/${satelliteItem.id }">Delete</a>
+												</div>
+											</td>
+											<td>
+												<c:if test="${satelliteItem.dataLancio == null && satelliteItem.dataRientro == null}">
+													<form method="post" action="${pageContext.request.contextPath}/satellite/launch">
+														<input type="text" hidden="" name="idSatellite" value="${satelliteItem.id}">
+														<button type="submit" name="submit" value="submit" id="submit" class="btn btn-outline-danger btn-sm">Lancia</button>
+													</form>
+												</c:if>
+												<c:if test="${satelliteItem.dataLancio != null && satelliteItem.dataRientro == null}">
+													<form method="post" action="${pageContext.request.contextPath}/satellite/returns">
+														<input type="text" hidden="" name="idSatellite" value="${satelliteItem.id}">
+														<button type="submit" name="submit" value="submit" id="submit" class="btn btn-outline-danger btn-sm">Rientra</button>
+													</form>
+												</c:if>
+												
 											</td>
 										</tr>
 									</c:forEach>

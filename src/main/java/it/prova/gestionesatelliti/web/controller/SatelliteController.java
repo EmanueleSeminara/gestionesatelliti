@@ -135,5 +135,23 @@ public class SatelliteController {
 		redirectAttrs.addFlashAttribute("successMessage", "Operazione eseguita correttamente");
 		return "redirect:/satellite";
 	}
+	
+	@PostMapping("/launch")
+	public String launch(@RequestParam(required = true) Long idSatellite, RedirectAttributes redirectAttrs) {
+
+		satelliteService.launch(idSatellite);
+
+		redirectAttrs.addFlashAttribute("successMessage", "Il satellite " + idSatellite + " è stato lanciato!!");
+		return "redirect:/satellite";
+	}
+	
+	@PostMapping("/returns")
+	public String returns(@RequestParam(required = true) Long idSatellite, RedirectAttributes redirectAttrs) {
+
+		satelliteService.returns(idSatellite);
+
+		redirectAttrs.addFlashAttribute("successMessage", "Il satellite " + idSatellite + " è stato lanciato!!");
+		return "redirect:/satellite";
+	}
 
 }

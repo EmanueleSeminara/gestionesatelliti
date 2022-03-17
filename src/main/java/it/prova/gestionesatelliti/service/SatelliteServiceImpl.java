@@ -1,6 +1,7 @@
 package it.prova.gestionesatelliti.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.criteria.Predicate;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import it.prova.gestionesatelliti.model.Satellite;
+import it.prova.gestionesatelliti.model.StatoSatellite;
 import it.prova.gestionesatelliti.repository.SatelliteRepository;
 
 @Service
@@ -82,6 +84,24 @@ public class SatelliteServiceImpl implements SatelliteService {
 	@Override
 	public void rimuoviById(Long idSatellite) {
 		repository.deleteById(idSatellite);
+
+	}
+
+	@Override
+	public void launch(Long idSatellite) {
+		Satellite satelliteDaLanciare = repository.findById(idSatellite).orElse(null);
+		satelliteDaLanciare.setDataLancio(new Date());
+		satelliteDaLanciare.setStato(StatoSatellite.IN_MOVIMENTO);
+		repository.save(satelliteDaLanciare);
+
+	}
+	
+	@Override
+	public void returns(Long idSatellite) {
+		Satellite satelliteDaLanciare = repository.findById(idSatellite).orElse(null);
+		satelliteDaLanciare.setDataRientro(new Date());
+		satelliteDaLanciare.setStato(StatoSatellite.DISATTIVATO);
+		repository.save(satelliteDaLanciare);
 
 	}
 

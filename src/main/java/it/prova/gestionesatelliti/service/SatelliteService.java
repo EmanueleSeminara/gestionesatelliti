@@ -19,4 +19,8 @@ public interface SatelliteService {
 
 	public List<Satellite> findByExample(Satellite example);
 
+	public void launch(Long idSatellite);
+
+	public void returns(Long idSatellite);
+
 }
