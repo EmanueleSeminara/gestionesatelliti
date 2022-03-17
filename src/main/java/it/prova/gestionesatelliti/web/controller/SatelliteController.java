@@ -86,13 +86,11 @@ public class SatelliteController {
 	public String delete(@PathVariable(required = true) Long idSatellite, Model model,
 			RedirectAttributes redirectAttrs) {
 		Satellite satelliteDaEliminare = satelliteService.caricaSingoloElemento(idSatellite);
-		System.out.println(satelliteDaEliminare);
 		if ((satelliteDaEliminare.getStato() != StatoSatellite.DISATTIVATO
 				&& satelliteDaEliminare.getDataRientro() != null
 				&& satelliteDaEliminare.getDataRientro().before(new Date()))
 				&& (satelliteDaEliminare.getDataLancio() != null)) {
 			redirectAttrs.addFlashAttribute("errorMessage", "Impossibile eliminare il satellite!");
-			redirectAttrs.addFlashAttribute("list_satellite_attr", satelliteService.caricaSingoloElemento(idSatellite));
 			return "redirect:/satellite";
 		}
 		model.addAttribute("delete_satellite_attr", satelliteService.caricaSingoloElemento(idSatellite));
@@ -152,6 +150,15 @@ public class SatelliteController {
 
 		redirectAttrs.addFlashAttribute("successMessage", "Il satellite " + idSatellite + " è stato lanciato!!");
 		return "redirect:/satellite";
+	}
+	
+	@GetMapping("/launchedtwoyears")
+	public ModelAndView launchedtwoyears() {
+		ModelAndView mv = new ModelAndView();
+		List<Satellite> results = satelliteService.lanciatiDaPiuDiDueAnni();
+		mv.addObject("satellite_list_attribute", results);
+		mv.setViewName("satellite/list");
+		return mv;
 	}
 
 }

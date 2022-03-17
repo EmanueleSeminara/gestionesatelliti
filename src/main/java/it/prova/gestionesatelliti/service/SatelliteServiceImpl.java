@@ -1,5 +1,6 @@
 package it.prova.gestionesatelliti.service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -95,7 +96,7 @@ public class SatelliteServiceImpl implements SatelliteService {
 		repository.save(satelliteDaLanciare);
 
 	}
-	
+
 	@Override
 	public void returns(Long idSatellite) {
 		Satellite satelliteDaLanciare = repository.findById(idSatellite).orElse(null);
@@ -103,6 +104,12 @@ public class SatelliteServiceImpl implements SatelliteService {
 		satelliteDaLanciare.setStato(StatoSatellite.DISATTIVATO);
 		repository.save(satelliteDaLanciare);
 
+	}
+
+	@Override
+	public List<Satellite> lanciatiDaPiuDiDueAnni() {
+		LocalDate data = LocalDate.now().minusYears(2).minusDays(1);
+		return repository.findByDataLancioLessThanEqual(java.sql.Date.valueOf(data));
 	}
 
 }
