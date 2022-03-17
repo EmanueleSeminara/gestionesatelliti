@@ -59,7 +59,8 @@ public class SatelliteController {
 	public String save(@Valid @ModelAttribute("insert_satellite_attr") Satellite satellite, BindingResult result,
 			RedirectAttributes redirectAttrs) {
 
-		if (satellite.getDataLancio().after(satellite.getDataRientro())) {
+		if (satellite.getDataLancio() != null && satellite.getDataRientro() != null
+				&& satellite.getDataLancio().after(satellite.getDataRientro())) {
 			result.rejectValue("dataLancio", "dataLancio.dataRientro.rangeInvalid");
 			result.rejectValue("dataRientro", "dataLancio.dataRientro.rangeInvalid");
 		}

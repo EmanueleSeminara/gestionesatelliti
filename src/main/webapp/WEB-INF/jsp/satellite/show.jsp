@@ -32,23 +32,23 @@
 					    	</dl>
 					    	
 					    	<dl class="row">
-							  <dt class="col-sm-3 text-right">Nome:</dt>
-							  <dd class="col-sm-9">${show_satellite_attr.nome}</dd>
+							  <dt class="col-sm-3 text-right">Codice:</dt>
+							  <dd class="col-sm-9">${show_satellite_attr.codice}</dd>
 					    	</dl>
 					    	
 					    	<dl class="row">
-							  <dt class="col-sm-3 text-right">Cognome:</dt>
-							  <dd class="col-sm-9">${show_satellite_attr.cognome}</dd>
+							  <dt class="col-sm-3 text-right">Denominazione:</dt>
+							  <dd class="col-sm-9">${show_satellite_attr.denominazione}</dd>
 					    	</dl>
 					    	
 					    	<dl class="row">
-							  <dt class="col-sm-3 text-right">Matricola:</dt>
-							  <dd class="col-sm-9">${show_satellite_attr.matricola}</dd>
+							  <dt class="col-sm-3 text-right">Data Lancio:</dt>
+							  <dd class="col-sm-9"><fmt:formatDate type="date" value = "${show_satellite_attr.dataLancio}" /></dd>
 					    	</dl>
 					    	
 					    	<dl class="row">
-							  <dt class="col-sm-3 text-right">Data di Nascita:</dt>
-							  <dd class="col-sm-9"><fmt:formatDate type="date" value = "${show_satellite_attr.dataDiNascita}" /></dd>
+							  <dt class="col-sm-3 text-right">Data Rientro:</dt>
+							  <dd class="col-sm-9"><fmt:formatDate type="date" value = "${show_satellite_attr.dataRientro}" /></dd>
 					    	</dl>
 					    	
 					    	<dl class="row">
